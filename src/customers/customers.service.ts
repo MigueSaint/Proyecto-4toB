@@ -80,5 +80,19 @@ export class CustomersService {
         });
       }
 
+    //ACTUALIZACION PARCIAL DEL CRUD
+
+    partialUpdate(id: number, body: Partial<Customers>) {
+      const customer = this.customers.find((item: Customers) => item.id === id);
     
+      if (!customer) {
+        return { message: `Cliente con ID ${id} no fue encontrado` };
+      }
+    
+      // Actualiza solo los campos presentes en el body
+      Object.assign(customer, body);
+    
+      return { message: `Cliente con ID ${id} fue actualizado correctamente` };
+    }
+
     }
