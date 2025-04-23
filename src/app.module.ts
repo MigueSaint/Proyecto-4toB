@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -27,3 +28,20 @@ import { User } from './users/users.entity'; // Importa la entidad User
   providers: [AppService],
 })
 export class AppModule {}
+=======
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ProductsController } from './products/products.controller';
+import { UsersController } from './controllers/users/users.controller';
+import { CustomersController } from './customers/customers.controller';
+import { ProductsService } from './products/products.service';
+import { CustomersService } from './customers/customers.service';
+
+@Module({
+  imports: [],
+  controllers: [AppController, ProductsController, UsersController, CustomersController],
+  providers: [AppService, ProductsService, CustomersService],
+})
+export class AppModule {}
+>>>>>>> cf42c8a8409f356e528396b2c18f1407ee49c3f6

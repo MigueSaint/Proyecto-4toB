@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cf42c8a8409f356e528396b2c18f1407ee49c3f6
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -100,10 +96,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-<<<<<<< HEAD
-=======
-# nestJS2025
-Proyecto de NestJs en el 2025 desde Cero
->>>>>>> 9bf33f63cbb5755fa6c3422172ef8665714a5b3f
-=======
->>>>>>> cf42c8a8409f356e528396b2c18f1407ee49c3f6
