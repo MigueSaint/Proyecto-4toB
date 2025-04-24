@@ -1,5 +1,7 @@
 // users/dto/users.dto.ts
 import { IsNotEmpty, IsString, IsEmail, IsDate, IsInt } from 'class-validator';
+import { Type } from 'class-transformer';
+import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -15,6 +17,7 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
+  @Type(() => Date)
   @IsDate()
   birthday: Date;
 
