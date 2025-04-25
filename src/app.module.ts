@@ -10,6 +10,7 @@ import { Product } from './products/product.entity'; // Importa la entidad Produ
 import { Users } from './users/users.entity'; // Importa la entidad User
 import { SizeModule } from './size/size.module';
 import { SizeService } from './size/size.service';
+import { ProductSizeModule } from './product-size/product-size.module';
 
 @Module({
   imports: [ProductsModule, TagsModule, TypeOrmModule.forRoot({
@@ -24,7 +25,7 @@ import { SizeService } from './size/size.service';
     autoLoadEntities: true,
     synchronize: true,
     logging: true
-}), UsersModule, SizeModule],
+}), UsersModule, SizeModule, ProductSizeModule],
   controllers: [AppController], // Elimina los controladores específicos aquí, ya están en sus módulos
   providers: [AppService, SizeService],
 })

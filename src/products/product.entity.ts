@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTabl
 import { Users } from '../users/users.entity';
 import { Size } from 'src/size/size.entity';
 
+
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
@@ -20,8 +21,8 @@ export class Product {
   @ManyToOne(() => Users, user => user.products)
   user: Users;
 
-  @ManyToMany(() => Size)
-  @JoinTable()  // Especifica que esta entidad manejará la relación en una tabla intermedia
+  @ManyToMany(() => Size, (size) => size.products, { cascade: true, eager: true })
+  @JoinTable()
   sizes: Size[];
 
 }
