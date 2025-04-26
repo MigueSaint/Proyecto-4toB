@@ -1,40 +1,41 @@
 import { IsNotEmpty, IsString, IsEnum } from 'class-validator';
 
+export enum EcSizeEnum {
+  EP = 'EP',
+  P = 'P',
+  M = 'M',
+  G = 'G',
+  EG = 'EG',
+  EEG = 'EEG',
+  EEEG = 'EEEG',
+}
+
+export enum GenderEnum {
+  Hombre = 'hombre',
+  Mujer = 'mujer',
+  Niño = 'niño',
+}
+
 export class CreateSizeDto {
-  @IsNotEmpty()
-  @IsString()
-  name: string;  // "M", "L", "XL"
+  @IsNotEmpty() @IsString()
+  name: string;
 
   @IsNotEmpty()
-  @IsString()
-  euSize: string;
+  @IsEnum(EcSizeEnum, { message: 'ecSize debe ser EP, P, M, G, EG, EEG o EEEG' })
+  ecSize: EcSizeEnum;
 
   @IsNotEmpty()
-  @IsString()
-  usSize: string;
-
-  @IsNotEmpty()
-  @IsString()
-  ecSize: string;
-
-  @IsNotEmpty()
-  @IsEnum(['hombre', 'mujer', 'niño'])
-  gender: 'hombre' | 'mujer' | 'niño';
+  @IsEnum(GenderEnum, { message: 'gender debe ser hombre, mujer o niño' })
+  gender: GenderEnum;
 }
 
 export class UpdateSizeDto {
   @IsString()
   name?: string;
 
-  @IsString()
-  euSize?: string;
+  @IsEnum(EcSizeEnum, { message: 'ecSize debe ser EP, P, M, G, EG, EEG o EEEG' })
+  ecSize?: EcSizeEnum;
 
-  @IsString()
-  usSize?: string;
-
-  @IsString()
-  ecSize?: string;
-
-  @IsEnum(['hombre', 'mujer', 'niño'])
-  gender?: 'hombre' | 'mujer' | 'niño';
+  @IsEnum(GenderEnum, { message: 'gender debe ser hombre, mujer o niño' })
+  gender?: GenderEnum;
 }

@@ -1,50 +1,46 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Put } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Size } from './size.entity';
-import { Repository } from 'typeorm';
+import { Controller, Get, Post, Put, Patch, Delete, Param, Body, ParseIntPipe, HttpCode, HttpStatus } from '@nestjs/common';
+import { SizeService } from './size.service';
+import { CreateSizeDto, UpdateSizeDto } from './dto/size.dto/size.dto';
 
 @Controller('size')
 export class SizeController {
+  constructor(private readonly sizeService: SizeService) {}
 
-constructor( 
-    @InjectRepository(Size) // Inyectamos el repositorio de Size
-    private sizeRepository: Repository<Size>,) {}
-    
-    @Get() // Endpoint para obtener todos los tamaños   
-    findAll(): Promise<Size[]> {  // Devuelve todos los tamaños
-        return this.sizeRepository.find(); // Devuelve todos los tamaños
-    }
-  
-    @Get(':id') // Endpoint para obtener un tamaño por su id
-    async findOne(@Param('id') id: string): Promise<Size> {
-      const size = await this.sizeRepository.findOne({
-        where: { id: parseInt(id, 10) } // convertir el id a número
-      });
-    
-      if (!size) {
-        throw new NotFoundException(`No se encontró un size con ID ${id}`);
-      }
-    
-      return size;
-    }
-   
-     @Post() // Endpoint para crear un nuevo tamaño
-    async createSize(@Body() size: Size): Promise<Size> {
-        return this.sizeRepository.save(size); // Guarda un nuevo tamaño
-    }
+  @Get()
+  findAll() {
+    return this.sizeService.findAll();
+  }
 
-    @Delete(':id') // Endpoint para eliminar un tamaño por su id
-    async deleteSize(@Param('id') id: number): Promise<void> {
-        return this.sizeRepository.delete(id).then(() => {}); // Elimina un tamaño por su ID
-    }
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.sizeService.findOne(id);
+  }
 
-    @Put(':id') // Endpoint para actualizar un tamaño por su id
-    async updateSize(@Param('id') id: number, @Body() size: Partial<Size>): Promise<Size> {
-        return this.sizeRepository.save({ ...size, id }); // Actualiza un tamaño por su ID
-    }
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() dto: CreateSizeDto) {
+    return this.sizeService.create(dto);
+  }
 
-    @Patch(':id') // Endpoint para actualizar parcialmente un tamaño por su id
-    async partialUpdateSize(@Param('id') id: number, @Body() size: Partial<Size>): Promise<Size> {
-        return this.sizeRepository.save({ ...size, id }); // Actualiza parcialmente un tamaño por su ID
-    }
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CreateSizeDto,     // PUT usa CreateDto (reemplaza todo)
+  ) {
+    return this.sizeService.update(id, dto);
+  }
+
+  @Patch(':id')
+  partialUpdate(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateSizeDto,
+  ) {
+    return this.sizeService.update(id, dto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.sizeService.delete(id);
+  }
 }

@@ -1,4 +1,3 @@
-// src/size/size.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ProductSize } from '../product-size/product-size.entity';
 
