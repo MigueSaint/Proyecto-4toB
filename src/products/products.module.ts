@@ -6,9 +6,10 @@ import { Product } from './product.entity';
 import { Users } from '../users/users.entity';
 import { UsersModule } from '../users/users.module';
 import { Size } from 'src/size/size.entity';
+import { ProductSize } from '../product-size/product-size.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product, Users, Size]),UsersModule,],
+  imports: [TypeOrmModule.forFeature([Product, Users, Size, ProductSize]),UsersModule,],
   
   controllers: [ProductsController,],
   providers: [ProductsService],

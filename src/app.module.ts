@@ -8,7 +8,6 @@ import { UsersModule } from './users/users.module';
 import { Product } from './products/product.entity'; 
 import { Users } from './users/users.entity'; 
 import { SizeModule } from './size/size.module';
-import { SizeService } from './size/size.service';
 import { ProductSizeModule } from './product-size/product-size.module';
 
 @Module({
@@ -26,6 +25,6 @@ import { ProductSizeModule } from './product-size/product-size.module';
     logging: true
 }), UsersModule, SizeModule, ProductSizeModule],
   controllers: [AppController], // Elimina los controladores específicos aquí, ya están en sus módulos
-  providers: [AppService, SizeService],
+  providers: [AppService],
 })
 export class AppModule {}
