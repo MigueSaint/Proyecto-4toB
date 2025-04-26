@@ -1,4 +1,3 @@
-// users/users.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -13,7 +12,7 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<Users[]> {
-    return await this.userRepository.find({ relations: ['products'] }) as Users[]; // Explicit type casting
+    return await this.userRepository.find({ relations: ['products'] }) as Users[]; 
   }
 
   async findOne(id: number): Promise<Users> {
@@ -21,7 +20,7 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException(`Usuario con ID: ${id} no encontrado`);
     }
-    return user as Users; // Explicit type casting
+    return user as Users; 
   }
 
   async create(createUserDto: CreateUserDto): Promise<Users> {

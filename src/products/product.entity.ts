@@ -1,8 +1,6 @@
-// products/product.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { Users } from '../users/users.entity';
-import { Size } from 'src/size/size.entity';
-
+import { ProductSize } from '../product-size/product-size.entity';
 
 @Entity()
 export class Product {
@@ -21,8 +19,6 @@ export class Product {
   @ManyToOne(() => Users, user => user.products)
   user: Users;
 
-  @ManyToMany(() => Size, (size) => size.products, { cascade: true, eager: true })
-  @JoinTable()
-  sizes: Size[];
-
+  @OneToMany(() => ProductSize, (productSize) => productSize.product, { cascade: true, eager: true })
+  productSizes: ProductSize[];
 }

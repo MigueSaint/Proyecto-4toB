@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { Product } from '../products/product.entity';
+// src/size/size.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { ProductSize } from '../product-size/product-size.entity';
 
 @Entity()
 export class Size {
@@ -7,7 +8,7 @@ export class Size {
   id: number;
 
   @Column()
-  name: string; // Ej: "M", "L", "XL"
+  name: string;
 
   @Column()
   euSize: string;
@@ -21,8 +22,6 @@ export class Size {
   @Column()
   gender: 'hombre' | 'mujer' | 'niño';
 
-  @ManyToMany(() => Product, (product) => product.sizes)
-  products: Product[];
-
-  
+  @OneToMany(() => ProductSize, (productSize) => productSize.size)
+  productSizes: ProductSize[];
 }

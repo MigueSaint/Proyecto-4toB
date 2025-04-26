@@ -1,7 +1,6 @@
-// src/product-size/product-size.entity.ts
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
-import { Product } from '../products/product.entity';
-import { Size } from '../size/size.entity';
+import { Product } from 'src/products/product.entity';
+import { Size } from 'src/size/size.entity';
 
 @Entity()
 export class ProductSizeDto {

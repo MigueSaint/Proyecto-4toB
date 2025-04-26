@@ -1,4 +1,3 @@
-// app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -6,8 +5,8 @@ import { ProductsModule } from './products/products.module';
 import { TagsModule } from './tags/tags.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { Product } from './products/product.entity'; // Importa la entidad Product
-import { Users } from './users/users.entity'; // Importa la entidad User
+import { Product } from './products/product.entity'; 
+import { Users } from './users/users.entity'; 
 import { SizeModule } from './size/size.module';
 import { SizeService } from './size/size.service';
 import { ProductSizeModule } from './product-size/product-size.module';
@@ -18,9 +17,9 @@ import { ProductSizeModule } from './product-size/product-size.module';
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: '1234',
+    password: '12345',
     database: 'Proyecto4B_MS',
-    entities: [Users, Product], // Asegúrate de incluir tus entidades aquí
+    entities: [Users, Product], 
     retryDelay: 3000,
     autoLoadEntities: true,
     synchronize: true,

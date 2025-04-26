@@ -1,20 +1,52 @@
-// products/dto/create-product.dto.ts
+import { IsNotEmpty, IsString, IsNumber, IsEnum } from 'class-validator';
 
 export class ProductSizeInput {
-    sizeName: string;        // Buscará por nombre de talla
-    euSize: string;
-    usSize: string;
-    ecuadorSize: string;
-    gender: 'hombre' | 'mujer' | 'niño';
-    price: number;
-    stock: number;
-  }
-  
-  export class CreateProductDto {
-    name: string;
-    description: string;
-    stock: number;
-    userId: number;
-    sizes: ProductSizeInput[];
-  }
-  
+  @IsNotEmpty()
+  @IsString()
+  sizeName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  euSize: string;
+
+  @IsNotEmpty()
+  @IsString()
+  usSize: string;
+
+  @IsNotEmpty()
+  @IsString()
+  ecuadorSize: string;
+
+  @IsNotEmpty()
+  @IsEnum(['hombre', 'mujer', 'niño'])
+  gender: 'hombre' | 'mujer' | 'niño';
+
+  @IsNotEmpty()
+  @IsNumber()
+  price: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  stock: number;
+}
+
+export class CreateProductDto {
+  @IsNotEmpty()
+  @IsString()
+  name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  description: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  stock: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  userId: number;
+
+  @IsNotEmpty({ each: true })
+  sizes: ProductSizeInput[];
+}
