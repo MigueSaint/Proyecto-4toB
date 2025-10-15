@@ -11,6 +11,7 @@ export class SizeController {
     return this.sizeService.findAll();
   }
 
+  
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.sizeService.findOne(id);
